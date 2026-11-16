@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --font-sans: "Tajawal", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Amiri", "Tajawal", serif;
+  --font-quran: "Scheherazade New", "Amiri", serif;
+
+  /* لوحة الألوان الأساسية — تتبدّل حسب الثيم عبر متغيّرات الجذر */
+  --color-bg: var(--c-bg);
+  --color-bg-soft: var(--c-bg-soft);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-hairline: var(--c-hairline);
+  --color-gold: var(--c-gold);
+  --color-gold-soft: var(--c-gold-soft);
+  --color-gold-deep: var(--c-gold-deep);
+
+  --color-seerah: #d9a94a;
+  --color-aqeedah: #5b8def;
+  --color-quran: #3fa96b;
+  --color-fiqh: #a678e8;
+
+  --radius-xl2: 1.375rem;
+}
+
+:root {
+  /* الوضع الداكن هو الافتراضي */
+  --c-bg: #29251f;
+  --c-bg-soft: #2f2a24;
+  --c-surface: #363029;
+  --c-surface-2: #3f382f;
+  --c-ink: #f6efe2;
+  --c-muted: #a79d8b;
+  --c-hairline: rgba(212, 175, 55, 0.18);
+  --c-gold: #d4af37;
+  --c-gold-soft: #e7c97a;
+  --c-gold-deep: #9d7c22;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --c-bg: #f7f2e7;
+  --c-bg-soft: #f1e9d8;
+  --c-surface: #ffffff;
+  --c-surface-2: #fbf7ee;
+  --c-ink: #2c2620;
+  --c-muted: #6f6555;
+  --c-hairline: rgba(44, 38, 32, 0.12);
+  --c-gold: #a8842a;
+  --c-gold-soft: #c9a341;
+  --c-gold-deep: #7d5f1a;
+  color-scheme: light;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* لا نريد تمريرًا أفقيًا غير مقصود */
+body,
+#root {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.32);
+}
+
+/* شريط تمرير أنيق */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-bg-soft);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--c-gold) 42%, transparent);
+  border-radius: 999px;
+  border: 2px solid var(--c-bg-soft);
+}
+
+@utility card-base {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-hairline);
+  border-radius: 1.25rem;
+}
+
+@utility gold-gradient {
+  background-image: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--c-gold) 22%, transparent) 0%,
+    color-mix(in srgb, var(--c-gold-deep) 34%, transparent) 48%,
+    color-mix(in srgb, var(--c-gold) 16%, transparent) 100%
+  );
+}
+
+@utility gold-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--c-gold-soft) 0%,
+    var(--c-gold) 45%,
+    var(--c-gold-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hairline {
+  border: 1px solid var(--c-hairline);
+}
+
+@utility soft-shadow {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.16),
+    0 14px 34px -22px rgba(0, 0, 0, 0.55);
+}
+
+/* زخرفة هندسية إسلامية خفيفة (SVG مضمن) */
+@utility islamic-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='1' stroke-opacity='0.22'%3E%3Cpath d='M60 0 L120 60 L60 120 L0 60 Z'/%3E%3Cpath d='M60 18 L102 60 L60 102 L18 60 Z'/%3E%3Crect x='42' y='42' width='36' height='36' transform='rotate(45 60 60)'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpath d='M0 0 L30 0 L0 30 Z'/%3E%3Cpath d='M120 120 L90 120 L120 90 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+@utility quran-font {
+  font-family: var(--font-quran);
+  line-height: 2.15;
+  letter-spacing: 0;
+}
+
+@utility display-font {
+  font-family: var(--font-display);
+}
+
+/* حركة فتح الموضوعات: انتقال شبكي سلس وسريع */
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.acc-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.acc-panel > div {
+  overflow: hidden;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@utility animate-rise {
+  animation: rise 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@utility animate-float-in {
+  animation: float-in 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .acc-panel {
+    transition: none;
+  }
+  .animate-rise,
+  .animate-float-in {
+    animation: none;
+  }
+}

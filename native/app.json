@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "ترميم الإسلام",
+    "slug": "tarmim-islam",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "tarmim",
+    "userInterfaceStyle": "dark",
+    "primaryColor": "#29251F",
+    "icon": "./assets/images/icon.png",
+    "backgroundColor": "#29251F",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#29251F"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.tarmimislam.app"
+    },
+    "android": {
+      "package": "com.tarmimislam.app",
+      "versionCode": 1,
+      "edgeToEdgeEnabled": true,
+      "softwareKeyboardLayoutMode": "resize",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#29251F"
+      },
+      "permissions": []
+    },
+    "extra": {
+      "appName": "ترميم الإسلام",
+      "appDescription": "موسوعة علمية شاملة"
+    },
+    "plugins": ["expo-router", "expo-font"]
+  }
+}
